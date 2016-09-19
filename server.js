@@ -43,5 +43,14 @@ smtpTransporter.sendMail(mailOptions, function(error, response){
 });
 });
 
+var unirest = require('unirest');
+// These code snippets use an open-source library. http://unirest.io/nodejs
+var msg = "I am sending a message using node Js";
+unirest.get("https://webaroo-send-message-v1.p.mashape.com/sendMessage?message="+msg+"&phone=9047135545")
+.header("X-Mashape-Key", "bmrR4VeDUQmshe6Qx00UZ1P9DFf2p11sViyjsniNQg7VhumlIx")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
+
 app.listen(3000);
 console.log('magic happens at port no 3000');
