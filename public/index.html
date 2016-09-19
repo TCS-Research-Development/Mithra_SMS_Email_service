@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Node Js Email Application</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+	        $(document).ready(function(){
+	        	var to,subject,body;
+
+	        	$("#send_email").click(function(){ 	
+	        	to=$('#to').val();
+	        	subject = $('#subject').val();
+	        	text=$('#content').val();
+
+                $.ajax({
+                     url:'/send',
+                     method: 'POST',
+                     data:{"to":to,"subject":subject,"text":text}
+                  }).success(function(response){
+                  	  console.log(response);
+                  })
+
+              })
+
+
+            })
+	</script>
+</head>
+<body>
+
+<label> Email:</label>
+     <input id="to" type="text" placeholder="Enter the email Id where you want to send"></input><br>
+<label>Subject</label>
+     <input id="subject" type="text" placeholder="Write a subject !"></input><br>
+<label>Body</label>
+     <textarea id="content" cols="80" rows="8" placeholder="Write what you want to send"></textarea><br>
+<button id="send_email">Send Email</button>
+</body>
+</html>
